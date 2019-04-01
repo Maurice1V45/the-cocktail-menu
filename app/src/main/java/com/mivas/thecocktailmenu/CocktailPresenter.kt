@@ -41,7 +41,7 @@ class CocktailPresenter : Presenter() {
     }
 
     private fun updateCardBackgroundColor(view: ImageCardView, selected: Boolean) {
-        val color = ContextCompat.getColor(context, if (selected) R.color.selected_background else R.color.default_background)
+        val color = ContextCompat.getColor(context, if (selected) R.color.selected_background else R.color.default_card_background)
         view.setBackgroundColor(color)
         view.setInfoAreaBackgroundColor(color)
     }

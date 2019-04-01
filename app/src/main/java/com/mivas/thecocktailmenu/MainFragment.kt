@@ -31,7 +31,7 @@ class MainFragment : BrowseFragment() {
     private var backgroundRes: Int? = null
 
     companion object {
-        private val BACKGROUND_UPDATE_DELAY = 1000
+        private const val BACKGROUND_UPDATE_DELAY = 200
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -102,7 +102,10 @@ class MainFragment : BrowseFragment() {
             val tag = tags[i]
             val header = HeaderItem(i.toLong(), tag)
             val listRowAdapter = ArrayObjectAdapter(presenter)
-            if (tags.isNotEmpty()) {
+            if (tag.isNotEmpty()) {
+                if (tag == "All") {
+                    cocktails.sortedBy { it.name }.forEach { listRowAdapter.add(it) }
+                }
                 cocktails.filter { it.tags.contains(tag) }.sortedBy { it.name }.forEach { listRowAdapter.add(it) }
             }
             rowsAdapter.add(ListRow(header, listRowAdapter))
